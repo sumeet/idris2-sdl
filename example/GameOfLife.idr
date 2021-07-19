@@ -3,7 +3,7 @@ module GameOfLife
 import Control.Comonad
 import Data.List
 import Data.Vect
-import Data.Strings
+import Data.String
 import System.Random
 import System.Clock
 

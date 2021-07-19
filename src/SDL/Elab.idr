@@ -19,6 +19,9 @@ mapName f (MN x y) = MN (f x) y
 mapName f (NS x y) = NS x (mapName f y)
 mapName f (DN x y) = DN (f x) y
 mapName f (RF x) = RF (f x)
+mapName f (Nested nesting name) = Nested nesting (mapName f name)
+mapName f (CaseBlock s n) = CaseBlock s n
+mapName f (WithBlock s n) = WithBlock s n
 
 extractNameStr : Name -> String
 extractNameStr (UN x) = x
@@ -26,6 +29,9 @@ extractNameStr (MN x y) = x
 extractNameStr (NS xs x) = extractNameStr x
 extractNameStr (DN x _) = x
 extractNameStr (RF x) = x
+extractNameStr (Nested nesting name) = extractNameStr name
+extractNameStr (CaseBlock s _) = s
+extractNameStr (WithBlock s _) = s
 
 checkConstructors : Name -> List Name -> Elab ()
 checkConstructors tyname names = traverse_ check names
@@ -47,7 +53,7 @@ str = IPrimVal EmptyFC . Str
 
 eqObject : Name -> Name -> Name -> Visibility -> Elab (Decl, Decl)
 eqObject qname decname eqfun vis = do
-  (eqname, _) <- lookupName `{{Eq}}
+  (eqname, _) <- lookupName `{Eq}
   [NS _ (DN _ eqcon)] <- getCons eqname
     | _ => fail "eqObject: error during Eq constructor lookup"
   let claim = IClaim EmptyFC MW vis [Hint True] (mkTy decname `(Eq ~(var qname)))
@@ -75,7 +81,7 @@ deriveUnitSumEq vis sname = do
 
 showObject : Name -> Name -> Name -> Visibility -> Elab (Decl, Decl)
 showObject qname decname showfun vis = do
-  (showname, _) <- lookupName `{{Show}}
+  (showname, _) <- lookupName `{Show}
   [NS _ (DN _ showcon)] <- getCons showname
     | _ => fail "eqObject: error during Show constructor lookup"
   let claim = IClaim EmptyFC MW vis [Hint True] (mkTy decname `(Show ~(var qname)))

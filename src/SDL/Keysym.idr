@@ -133,8 +133,8 @@ data Keycode
   | RAlt
   | RGui
 
-%runElab deriveUnitSumEq Export `{{Keycode}}
-%runElab deriveUnitSumShow Export `{{Keycode}}
+-- %runElab deriveUnitSumEq Export `{Keycode}
+-- %runElab deriveUnitSumShow Export `{Keycode}
 
 export
 keycodeToInt : Keycode -> Int
@@ -406,8 +406,8 @@ namespace Keymod
     | Caps
     | Mode
 
-  %runElab deriveUnitSumEq Export `{{Keymod}}
-  %runElab deriveUnitSumShow Export `{{Keymod}}
+--  %runElab deriveUnitSumEq Export `{Keymod}
+--  %runElab deriveUnitSumShow Export `{Keymod}
 
   keymodMask : Keymod -> Bits16
   keymodMask LShift = 0x0001

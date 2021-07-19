@@ -29,8 +29,8 @@ data SDLInitFlags : Type where
   SDLInitGameController : SDLInitFlags
   SDLInitEvents : SDLInitFlags
 
-%runElab deriveUnitSumEq Export `{{SDLInitFlags}}
-%runElab deriveUnitSumShow Export `{{SDLInitFlags}}
+--%runElab deriveUnitSumEq Export `{{SDLInitFlags}}
+--%runElab deriveUnitSumShow Export `{{SDLInitFlags}}
 
 export
 initFlagsToBits : SDLInitFlags -> Bits32
@@ -83,8 +83,8 @@ data SDLWindowFlags : Type where
   SDLWindowInputGrabbed : SDLWindowFlags
   SDLWindowAllowHighDPI : SDLWindowFlags
 
-%runElab deriveUnitSumEq Export `{{SDLWindowFlags}}
-%runElab deriveUnitSumShow Export `{{SDLWindowFlags}}
+--%runElab deriveUnitSumEq Export `{SDLWindowFlags}
+--%runElab deriveUnitSumShow Export `{SDLWindowFlags}
 
 export
 windowFlagsToBits : SDLWindowFlags -> Bits32
@@ -129,8 +129,8 @@ data SDLRendererFlags : Type where
   SDLRendererPresentVSync : SDLRendererFlags
   SDLRendererTargetTexture : SDLRendererFlags
 
-%runElab deriveUnitSumEq Export `{{SDLRendererFlags}}
-%runElab deriveUnitSumShow Export `{{SDLRendererFlags}}
+--%runElab deriveUnitSumEq Export `{{SDLRendererFlags}}
+--%runElab deriveUnitSumShow Export `{{SDLRendererFlags}}
 
 export
 rendererFlagsToBits : SDLRendererFlags -> Bits32
@@ -154,8 +154,8 @@ data SDLEventType : Type where
   SDLMouseButtonUp : SDLEventType
   SDLGenericEvent : SDLEventType
 
-%runElab deriveUnitSumEq Export `{{SDLEventType}}
-%runElab deriveUnitSumShow Export `{{SDLEventType}}
+--%runElab deriveUnitSumEq Export `{{SDLEventType}}
+--%runElab deriveUnitSumShow Export `{{SDLEventType}}
 
 export
 eventFromInt : Int -> SDLEventType
@@ -171,8 +171,8 @@ eventFromInt x = SDLGenericEvent
 public export
 data MouseButton = Left | Middle | Right | X1 | X2
 
-%runElab deriveUnitSumEq Export `{{MouseButton}}
-%runElab deriveUnitSumShow Export `{{MouseButton}}
+--%runElab deriveUnitSumEq Export `{{MouseButton}}
+--%runElab deriveUnitSumShow Export `{{MouseButton}}
 
 export
 mouseButtonToBits : MouseButton -> Bits8
@@ -194,8 +194,8 @@ mouseButtonFromBits _ = Nothing
 public export
 data ButtonState = Pressed | Released
 
-%runElab deriveUnitSumEq Export `{{ButtonState}}
-%runElab deriveUnitSumShow Export `{{ButtonState}}
+--%runElab deriveUnitSumEq Export `{{ButtonState}}
+--%runElab deriveUnitSumShow Export `{{ButtonState}}
 
 export
 buttonStateToBits : ButtonState -> Bits8
